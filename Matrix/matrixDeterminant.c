@@ -73,9 +73,9 @@ int main()
   int order;
   int daterminant;
   // printf("Enter the order of the matrix: ");
-  // sscanf("%d", &order);
+  // scanf("%d", &order);
 
-  // setting the order of the matrix
+  // setting the order of the matrix to 3
   order = 3;
 
   int **mat1 = init_matrix(order);
