@@ -9,32 +9,63 @@ int **init_matrix(int order)
     mat[i] = (int *)malloc(order * sizeof(int));
   }
 
-  // Entering user input values in the matrix
-  printf("Enter values in the matrix: ");
+  return mat;
+}
+
+void print(int** mat, int order)
+{
   for (int i = 0; i < order; i++)
   {
     for (int j = 0; j < order; j++)
     {
-      scanf("%d", &mat[i][j]);
+      printf("%d ", mat[i][j]);
     }
+      printf("\n");
   }
-
-  return mat;
 }
 
-int matrix_determinant(int **arr, int order)
+int matrix_determinant(int **mainMatrix, int order)
 {
-  // base case
-  if (order == 1) return **arr;
-
-  int ans = 0;
-
-  for (int i = 0; i < order; i++)
-  {
-    ans += arr[0][i] * matrix_determinant(&arr[1][(i + 1) % order], order - 1);
+  if(order <= 0) {
+    printf("Order can't be of order 0 or less...\n");
+    return -1;
   }
 
-  return ans;
+  // base case
+  if (order == 1) return mainMatrix[0][0];
+
+  int det = 0;
+  int **subMatrix = init_matrix(order - 1);
+
+  // sign of the determinant 
+  int sign = -1;
+  
+  // selecting the main row-column
+  for (int k = 0; k < order; k++)
+  {    
+    /*** creating the sub-matrix ***/
+    int subrow = 0;
+    // selecting the sub-row
+    for (int mainrow = 1; mainrow < order; mainrow++)
+    {
+      int subcol = 0;
+      // selecting the sub-column
+      for(int maincol = 0; maincol < order; maincol++)
+      {
+        if(maincol == k) continue;
+        subMatrix[subrow][subcol] = mainMatrix[mainrow][maincol];
+        subcol++;
+      }
+      subrow++;
+    }
+    /*** !creating the sub-matrix ***/
+  
+    // calculating the determinat of the matrix
+    sign *= -1;
+    det += sign * mainMatrix[0][k] * matrix_determinant(subMatrix, order - 1);
+  }
+
+  return det;
 }
 
 int main()
@@ -48,6 +79,19 @@ int main()
   order = 3;
 
   int **mat1 = init_matrix(order);
+
+  // Entering user input values into the matrix
+  printf("Enter values in the matrix: ");
+  for (int i = 0; i < order; i++)
+  {
+    for (int j = 0; j < order; j++)
+    {
+      scanf("%d", &mat1[i][j]);
+    }
+  }
+
+  // printing the matrix
+  print(mat1, order);
 
   // calculating the determinant of the matrix
   daterminant = matrix_determinant(mat1, order);
