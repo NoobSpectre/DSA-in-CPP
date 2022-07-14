@@ -41,7 +41,7 @@ void solve(string digits, int index, string& output, vector<string> &ans, vector
 vector<string> ph_numCombinations(string digits) {
   vector<string> ans;
 
-  if(digits.length() <=0)
+  if(digits.length() <= 0)
     return ans;
 
   vector<string> mapping = {"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
