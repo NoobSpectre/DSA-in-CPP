@@ -17,33 +17,56 @@ Example 2:
 #include <vector>
 using namespace std;
 
-// vector<vector<int>> powerSet(vector<int>& nums) {
-//   int cardinal = 2**(nums.size());
-//   vector<vector<int>> ans(cardinal);
+void solve(vector<int> &nums, vector<vector<int> > &ans, vector<int> subset, int index) {
+  //base case
+  if(index >= nums.size()) {
+    ans.push_back(subset);
+    return;
+  }
 
-//   return ans;
-// }
+  //excluded case
+  solve(nums, ans, subset, index + 1);
+
+  //include case
+  int element = nums[index];
+  subset.push_back(element);
+  solve(nums, ans, subset, index + 1);
+}
+
+vector<vector<int>> powerSet(vector<int>& nums) { // [1,2,3]
+  vector<vector<int>> ans;
+  if(nums.size() <= 0) return ans;
+
+  vector<int> subset;
+  solve(nums, ans, subset, 0);
+
+  return ans;
+}
 
 int main() {
-  // cout << "Enter the number of integers in the array: ";
-  // int n; cin >> n;
+  cout << "Enter the number of integers in the array: ";
+  int n; cin >> n;
 
-  // cout << "Enter the integers in the array: ";
-  // vector<int> arr(n);
-  // for (int i = 0; i < n; i++) {
-  //   cin >> arr[i];
-  // }
+  cout << "Enter the integers in the array: ";
+  vector<int> arr(n);
+  for (int i = 0; i < n; i++) {
+    cin >> arr[i];
+  }
 
-  // vector<vector<int>> power_set = powerSet(arr);
-  // cout << "[";
-  // for(auto i: power_set) {
-  //   cout << "[";
-  //   for(auto j: i) {
-  //     cout << j << ", ";
-  //   }
-  //   cout << "]";
-  // }
-  // cout << "]";
+  vector<vector<int>> power_set = powerSet(arr);
+
+  cout << "Number of power set elements: " << power_set.size() << endl;
+
+  cout << "[";
+  for(int i=0; i<power_set.size(); i++) {
+    cout << "[";
+    for(int j=0; j<i; j++) {
+      cout << power_set[i][j];
+      if(j != i - 1) cout << ", ";
+    }
+    if(i != (power_set.size() - 1)) cout << "], ";
+  }
+  cout << "]";
 
   return 0;
 }
