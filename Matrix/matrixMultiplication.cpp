@@ -27,20 +27,6 @@ int** multiplyMatrices(int** mat1, int** mat2, int _rows1,int _cols1, int _rows2
         }
     }
 
-    // for(int i=0; i<_rows1; i++) {
-    //     for(int j=0; j<_cols1; j++) {
-    //         cout << mat1[i][j] << " ";
-    //     }
-    //     cout << endl;
-    // }
-
-    // for(int i=0; i<_rows2; i++) {
-    //     for(int j=0; j<_cols2; j++) {
-    //         cout << mat1[i][j] << " ";
-    //     }
-    //     cout << endl;
-    // }
-
     return newMat;
 }
 
