@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <climits>
+#include "array_utilities.cpp"
 using namespace std;
 
 vector<int> sortedSquares(vector<int>& nums) {
@@ -37,13 +38,6 @@ vector<int> sortedSquares(vector<int>& nums) {
   return ans;
 }
 
-void print(vector<int>& nums) {
-  for(int i: nums) {
-    cout << i << " ";
-  }
-  cout << endl;
-}
-
 int main() {
   cout << "Enter the number of values: ";
   int n; cin >> n;
@@ -57,7 +51,7 @@ int main() {
   vector<int> result = sortedSquares(nums);
 
   cout << "The resultant array is: ";
-  print(result);
+  printVec(result);
 
   return 0;
 }
