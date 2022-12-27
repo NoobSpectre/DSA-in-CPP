@@ -1,3 +1,5 @@
+// Enter a number and return the sum of the odd digits and even digits separately.
+
 #include<iostream>
 using namespace std;
 
