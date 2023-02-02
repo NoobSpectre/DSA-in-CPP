@@ -1,5 +1,6 @@
 #include<iostream>
 #include<vector>
+#include "../array_utilities.cpp"
 using namespace std;
 
 void solve(vector<vector<int>>& matrix, int start, int end) {
@@ -16,14 +17,6 @@ void rotate_90_deg(vector<vector<int>>& matrix) {
   int n = matrix.size();
   solve(matrix, 0, n - 1);
   return;
-}
-
-void print_matrix(vector<vector<int>>& matrix) {
-  for(int i=0; i<matrix.size(); i++) {
-    for(int j=0; j<matrix[0].size(); j++) {
-      cout << matrix[i][j] << " ";
-    }
-  }
 }
 
 int main() {
