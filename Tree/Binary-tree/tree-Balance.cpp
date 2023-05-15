@@ -22,6 +22,7 @@ int main()
 {
   Node *root = NULL;
 
+// Balanced tree
   // insert(root, 30);
   // insert(root, 15);
   // insert(root, 10);
@@ -31,6 +32,7 @@ int main()
   // insert(root, 45);
   // insert(root, 35);
 
+// Unbalanced tree
   insert(root, 35);
   insert(root, 30);
   insert(root, 40);
