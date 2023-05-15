@@ -1,4 +1,5 @@
 #include <iostream>
+#include <queue>
 using namespace std;
 
 class Node {
@@ -15,30 +16,23 @@ class Node {
 void insert(Node* &root, int val) {
   if(root == NULL) {
     root = new Node(val);
-    return;
   }
   else if(root->data > val) {
     if(root->left == NULL) {
       Node *tmp = new Node(val);
       root->left = tmp;
-      return;
     } else insert(root->left, val);
   } else {
     if(root->right == NULL) {
       Node *tmp = new Node(val);
       root->right = tmp;
-      return;
     } else insert(root->right, val);
   }
+
+  return;
 }
 
-void inOrder(Node *&root) {
-  if(root == NULL) return;
-  inOrder(root->left);
-  cout << root->data << " ";
-  inOrder(root->right);
-}
-
+// root value -> left child subtree -> right child subtree
 void preOrder(Node* &root) {
   if(root == NULL) return;
   cout << root->data << " ";
@@ -46,11 +40,38 @@ void preOrder(Node* &root) {
   preOrder(root->right);
 }
 
+// left child subtree -> root value -> right child subtree
+void inOrder(Node *&root) {
+  if(root == NULL) return;
+  inOrder(root->left);
+  cout << root->data << " ";
+  inOrder(root->right);
+}
+
+// left child subtree -> right child subtree -> root value
 void postOrder(Node* &root) {
   if(root == NULL) return;
   postOrder(root->left);
   postOrder(root->right);
   cout << root->data << " ";
+}
+
+// level order traversal
+void levelOrder(Node* &root) {
+  if(root == NULL) return;
+
+  queue<Node *> q;
+  q.push(root);
+
+  while(!q.empty()) {
+    Node *tmp = q.front();
+    cout << tmp -> data << " ";
+    if(tmp -> left != NULL) q.push(tmp -> left);
+    if(tmp -> right != NULL) q.push(tmp -> right);
+    q.pop();
+  }
+
+  return;
 }
 
 int main() {
@@ -75,6 +96,9 @@ int main() {
 
   cout << "\nThe postorder traversal of the tree is: ";
   postOrder(root);
+
+  cout << "\nThe levelorder traversal of the tree is: ";
+  levelOrder(root);
 
   return 0;
 }
