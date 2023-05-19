@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 #include <queue>
 #include "TreeNode.cpp"
 using namespace std;
@@ -37,10 +38,59 @@ void levelOrder(Node* &root) {
   while(!q.empty()) {
     Node *tmp = q.front();
     cout << tmp -> data << " ";
-    if(tmp -> left != NULL) q.push(tmp -> left);
-    if(tmp -> right != NULL) q.push(tmp -> right);
+    if(tmp -> left) q.push(tmp -> left);
+    if(tmp -> right) q.push(tmp -> right);
     q.pop();
   }
+
+  return;
+}
+
+vector<vector<int>> traverse_zigzag(Node *root) {
+  vector<vector<int>> zigzag_nodesList;
+  if(root == NULL) return zigzag_nodesList;
+
+  queue<Node *> q;
+  q.push(root);
+
+  bool leftToRight = true;
+
+  while(!q.empty()) {
+    int n = q.size();
+    vector<int> tmp(n);
+
+    for(int i = 0; i < n; i++) {
+      Node* front = q.front();
+
+      if(leftToRight) {
+        tmp[i] = front->data;
+      } else {
+        tmp[n - i - 1] = front->data;
+      }
+
+      if(front -> left) q.push(front -> left);
+      if(front -> right) q.push(front -> right);
+
+      q.pop();
+    }
+    
+    zigzag_nodesList.push_back(tmp);
+    leftToRight = !leftToRight;
+  }
+
+  return zigzag_nodesList;
+}
+
+void printNodes(vector<vector<int>> &vec) {
+  if(!vec.size()) return;
+
+  for(int i = 0; i < vec.size(); i++) {
+    for(int j = 0; j < vec[i].size(); j++) {
+      cout << vec[i][j] << " ";
+    }
+  }
+
+  cout << endl;
 
   return;
 }
@@ -70,6 +120,10 @@ int main() {
 
   cout << "\nThe levelorder traversal of the tree is: ";
   levelOrder(root);
+
+  cout << "\nThe zigzag traversal of the tree is: ";
+  vector<vector<int>> zigzagNodesList = traverse_zigzag(root);
+  printNodes(zigzagNodesList);
 
   return 0;
 }
