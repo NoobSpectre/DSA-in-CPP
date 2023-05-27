@@ -1,5 +1,5 @@
 #include <iostream>
-#include "TreeNode.cpp"
+#include "../TreeNode.cpp"
 using namespace std;
 
 int isBalancedTree(Node *&root)
@@ -10,7 +10,7 @@ int isBalancedTree(Node *&root)
   int leftChild = isBalancedTree(root->left);
   int rightChild = isBalancedTree(root->right);
 
-  if (leftChild == -1 && rightChild == -1)
+  if (leftChild == -1 || rightChild == -1)
     return -1;
   else if (abs(leftChild - rightChild) > 1)
     return -1;

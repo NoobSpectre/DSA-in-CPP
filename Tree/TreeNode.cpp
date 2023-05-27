@@ -10,6 +10,7 @@ class Node {
     this->data = val;
     this->left = this->right = NULL;
   }
+  Node(int *null) {}
 };
 
 void insert(Node* &root, int val) {
@@ -30,3 +31,10 @@ void insert(Node* &root, int val) {
 
   return;
 }
+
+// void insert(Node *root, string val) {
+//   if(root == NULL) {
+//     root = new Node(NULL);
+//   }
+//   else if
+// }

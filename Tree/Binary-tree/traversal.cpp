@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <queue>
-#include "TreeNode.cpp"
+#include "../TreeNode.cpp"
 using namespace std;
 
 // root value -> left child subtree -> right child subtree

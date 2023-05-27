@@ -1,8 +1,10 @@
 #include<iostream>
-#include "TreeNode.cpp"
+#include "../TreeNode.cpp"
 using namespace std;
 
-void zigzagTraversal();
+void zigzagTraversal() {
+  
+}
 
 int main() {
   Node *root = NULL;

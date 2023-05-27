@@ -1,5 +1,5 @@
 #include <iostream>
-#include "TreeNode.cpp"
+#include "../TreeNode.cpp"
 using namespace std;
 
 int maxPathSum(Node *root, int &max_path_sum)
