@@ -1,5 +1,6 @@
 #include <iostream>
-// using namespace std;
+#include <vector>
+using namespace std;
 
 class Node {
   public:
@@ -38,3 +39,17 @@ void insert(Node* &root, int val) {
 //   }
 //   else if
 // }
+
+void printNodes(const vector<vector<int>> &vec) {
+  if(!vec.size()) return;
+
+  int n = vec.size();
+
+  for(int i = 0; i < n; i++) {
+    for(int j = 0; j < vec[i].size(); j++) {
+      cout << vec[i][j] << " ";
+    }
+  }
+
+  cout << endl;
+}
